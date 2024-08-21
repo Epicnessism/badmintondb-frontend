@@ -6,27 +6,47 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <!-- Position Column -->
-  <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef> No. </th>
-    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+  <ng-container matColumnDef="stringingId">
+    <th mat-header-cell *matHeaderCellDef>Stringing Id</th>
+    <td mat-cell *matCellDef="let element"> {{element.stringingId}} </td>
   </ng-container>
 
   <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef> Status </th>
+    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
   </ng-container>
 
   <!-- Weight Column -->
-  <ng-container matColumnDef="weight">
-    <th mat-header-cell *matHeaderCellDef> Weight </th>
-    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+  <ng-container matColumnDef="completed">
+    <th mat-header-cell *matHeaderCellDef> Completed </th>
+    <td mat-cell *matCellDef="let element"> {{element.completed}} </td>
   </ng-container>
 
   <!-- Symbol Column -->
-  <ng-container matColumnDef="symbol">
-    <th mat-header-cell *matHeaderCellDef> Symbol </th>
-    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+  <ng-container matColumnDef="completedTimestamp">
+    <th mat-header-cell *matHeaderCellDef> Completed Timestamp </th>
+    <td mat-cell *matCellDef="let element"> {{element.completedTimestamp}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="requestedTimestamp">
+    <th mat-header-cell *matHeaderCellDef> Requested Timestamp </th>
+    <td mat-cell *matCellDef="let element"> {{element.requestedTimestamp}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="lastUpdatedTimestamp">
+    <th mat-header-cell *matHeaderCellDef> Last Updated Timestamp </th>
+    <td mat-cell *matCellDef="let element"> {{element.lastUpdatedTimestamp}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef> Price </th>
+    <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="owner">
+    <th mat-header-cell *matHeaderCellDef> Owner </th>
+    <td mat-cell *matCellDef="let element"> {{element.racketDetails.ownerDetails.givenName}} {{element.racketDetails.ownerDetails.familyName}}</td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

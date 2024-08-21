@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from "rxjs";
-import {UserStringings} from "../interfaces/user-stringings.model";
+import {UserStringings} from "../interfaces/UserStringings.model";
 
 @Injectable({
   providedIn: 'root'
