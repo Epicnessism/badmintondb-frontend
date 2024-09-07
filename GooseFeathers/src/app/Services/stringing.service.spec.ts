@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { StringingServiceService } from './stringing-service.service';
+import { StringingService } from './stringing.service';
 
 describe('StringingServiceService', () => {
-  let service: StringingServiceService;
+  let service: StringingService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(StringingServiceService);
+    service = TestBed.inject(StringingService);
   });
 
   it('should be created', () => {

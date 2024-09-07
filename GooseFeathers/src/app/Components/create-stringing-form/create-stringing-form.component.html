@@ -4,21 +4,76 @@
 <mat-stepper [linear]="isLinear" #stepper>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Fill out your name</ng-template>
+      <ng-template matStepLabel>Racket Details</ng-template>
       <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+        <mat-label>Make</mat-label>
+        <input matInput placeholder="Yonex" formControlName="make" required>
       </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Model</mat-label>
+        <input matInput placeholder="Astrox 100ZZ" formControlName="model" required>
+      </mat-form-field>
+
+
+      <h4>mat-select</h4>
+      <mat-form-field>
+        <mat-label>Choose one</mat-label>
+        <mat-select [formControl]="selected" [errorStateMatcher]="matcher">
+          <mat-option>Clear</mat-option>
+          <mat-option value="valid">Valid option</mat-option>
+          <mat-option value="invalid">Invalid option</mat-option>
+        </mat-select>
+        <mat-hint>Errors appear instantly!</mat-hint>
+        @if (selected.hasError('required')) {
+          <mat-error>You must make a selection</mat-error>
+        }
+        @if (selected.hasError('pattern') && !selected.hasError('required')) {
+          <mat-error>Your selection is invalid</mat-error>
+        }
+      </mat-form-field>
+
+      <h4>native html select</h4>
+      <mat-form-field class="demo-full-width">
+        <mat-label>Choose one</mat-label>
+        <select matNativeControl [formControl]="nativeSelectFormControl" [errorStateMatcher]="matcher">
+          <option value=""></option>
+          <option value="valid" selected>Valid option</option>
+          <option value="invalid">Invalid option</option>
+        </select>
+        @if (nativeSelectFormControl.hasError('required')) {
+          <mat-error>You must make a selection</mat-error>
+        }
+        @if (nativeSelectFormControl.hasError('pattern') && !nativeSelectFormControl.hasError('required')) {
+          <mat-error>Your selection is invalid</mat-error>
+        }
+      </mat-form-field>
+
+
+
+
       <div>
         <button mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+  <mat-step [stepControl]="secondFormGroup" label="String Settings">
     <form [formGroup]="secondFormGroup">
       <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+        <mat-label>Mains</mat-label>
+        <input matInput formControlName="mains" type="number" placeholder="26"
+               required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Crosses</mat-label>
+        <input matInput formControlName="crosses" type="number" placeholder="28"
+               required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>String Model</mat-label>
+        <input matInput formControlName="stringModel" placeholder="BG 80 Power"
                required>
       </mat-form-field>
       <div>
@@ -33,6 +88,8 @@
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button (click)="createStringRequest()">Create</button>
+
     </div>
   </mat-step>
 </mat-stepper>

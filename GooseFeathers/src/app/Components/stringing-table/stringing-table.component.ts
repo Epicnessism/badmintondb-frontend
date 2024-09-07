@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {StringingServiceService} from "../../Services/stringing-service.service";
+import {StringingService} from "../../Services/stringing.service";
 import {Stringing} from "../../interfaces/Stringing.model";
 
 @Component({
@@ -16,7 +16,7 @@ export class StringingTableComponent implements OnInit {
 
   tableData: Stringing[] = [];
 
-  constructor(private stringingService: StringingServiceService) {
+  constructor(private stringingService: StringingService) {
   }
 
   displayedColumns: string[] = ['owner', 'requestedTimestamp', 'price', 'status', 'lastUpdatedTimestamp', 'completedTimestamp', 'stringingId'];

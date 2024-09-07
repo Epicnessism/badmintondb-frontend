@@ -1,5 +1,5 @@
 import {UUID} from "node:crypto";
-import {Racket} from "./Racket.model";
+import {OwnedRacket} from "./OwnedRacket";
 import {User} from "./User";
 import {StringEntity} from "./StringEntity";
 
@@ -12,7 +12,7 @@ export interface Stringing {
   lastUpdatedTimestamp: Date,
   price: number,
   notes: string,
-  racketDetails: Racket,
+  racketDetails: OwnedRacket,
   crosses: StringEntity,
   mains: StringEntity,
   provider: User
