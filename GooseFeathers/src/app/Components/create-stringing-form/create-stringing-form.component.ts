@@ -10,6 +10,9 @@ import {Racket} from "../../interfaces/Racket";
 import {MatOption} from "@angular/material/autocomplete";
 import {MatSelect} from "@angular/material/select";
 import {NgForOf} from "@angular/common";
+import {MatSlideToggle} from "@angular/material/slide-toggle";
+import {parse, v4 as uuidv4} from 'uuid'
+import {randomUUID} from "node:crypto";
 
 @Component({
   selector: 'app-create-stringing-form',
@@ -24,6 +27,7 @@ import {NgForOf} from "@angular/common";
     MatOption,
     MatSelect,
     NgForOf,
+    MatSlideToggle,
   ],
   templateUrl: './create-stringing-form.component.html',
   styleUrl: './create-stringing-form.component.scss'
@@ -53,10 +57,12 @@ export class CreateStringingFormComponent implements OnInit {
   })
 
   isLinear = false;
+  isRequestee = false;
+  isStringer = false;
 
   createStringRequest(): void {
     console.log("Create String Request")
-    let racketModel: Racket = this.racketModels.find(racket => racket.id == this.firstFormGroup.value.racketId)!;
+    let racketModel: Racket = this.racketModels.find(racket => racket.racketId == this.firstFormGroup.value.racketId)!;
     console.log("Racket Model found as: " + racketModel)
 
     let request: CreateStringRequest = {
@@ -72,7 +78,7 @@ export class CreateStringingFormComponent implements OnInit {
         make: racketModel.make ?? '',
         model: racketModel.model ?? '',
         ownerDetails: {
-          userId: "92cba104-c922-4852-a683-b32ffd21b109" //todo make this session user
+          userId: this.isRequestee ? sessionStorage.getItem('activeUserId')! : "92cba104-c922-4852-a683-b32ffd21b109"
         }
       },
       stringerId: "92cba104-c922-4852-a683-b32ffd21b109" //todo get userId from session

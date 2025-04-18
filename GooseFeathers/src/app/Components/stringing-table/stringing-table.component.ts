@@ -28,7 +28,7 @@ export class StringingTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.stringingService.getStringingData().subscribe( data => {
+    this.stringingService.getStringingData(sessionStorage.getItem('activeUserId')!).subscribe( data => { //todo fix the string|null type
       console.log(data)
       console.log(data.stringingResponseList)
       this.tableData = data.stringingResponseList

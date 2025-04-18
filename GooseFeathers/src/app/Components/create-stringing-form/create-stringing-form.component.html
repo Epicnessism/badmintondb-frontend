@@ -5,21 +5,14 @@
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Racket Details</ng-template>
-<!--      <mat-form-field>-->
-<!--        <mat-label>Make</mat-label>-->
-<!--        <input matInput placeholder="Yonex" formControlName="make" required>-->
-<!--      </mat-form-field>-->
-
-<!--      <mat-form-field>-->
-<!--        <mat-label>Model</mat-label>-->
-<!--        <input matInput placeholder="Astrox 100ZZ" formControlName="model" required>-->
-<!--      </mat-form-field>-->
-
+      <mat-slide-toggle [checked]="isRequestee" (change)="isRequestee = !isRequestee">
+        I am the requestee! {{isRequestee}}
+      </mat-slide-toggle>
 
       <mat-form-field>
         <mat-label>Racket Model</mat-label>
         <mat-select [formControl]="racketId">
-          <mat-option *ngFor="let racket of racketModels" [value]="racket.id">{{ racket.make }} - {{ racket.model }}</mat-option>
+          <mat-option *ngFor="let racket of racketModels" [value]="racket.racketId">{{ racket.make }} - {{ racket.model }}</mat-option>
         </mat-select>
 <!--        <mat-hint>Errors appear instantly!</mat-hint>-->
 <!--        @if (selected.hasError('required')) {-->

@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from "rxjs";
 import {UserStringings} from "../interfaces/UserStringings.model";
 import {CreateStringRequest} from "../interfaces/CreateStringRequest";
-import {OwnedRacket} from "../interfaces/OwnedRacket";
 import {Racket} from "../interfaces/Racket";
 
 @Injectable({
@@ -11,20 +10,21 @@ import {Racket} from "../interfaces/Racket";
 })
 export class StringingService {
   private baseUrl: string = "http://localhost:8080";
-  private getStringingsByUser: string = '/user/92cba104-c922-4852-a683-b32ffd21b109/stringings'
+  private userIdRegex: string = '{userId}'
+  private getStringingsByUser: string = `/user/{userId}/stringings`
   private getRacketdModels: string = '/info/racketModels'
   private getStringModels: string = '/info/strings'
   private postCreateStringingRequest: string = '/stringing'
 
   constructor(private http:HttpClient) { }
 
-  getStringingData(): Observable<UserStringings> {
+  getStringingData(userId: string): Observable<UserStringings> {
     //todo figure out options  type
     // const options = {
     //   headers: {
     //   },
     // }
-    return this.http.get<UserStringings>(this.baseUrl + this.getStringingsByUser);
+    return this.http.get<UserStringings>(this.baseUrl + this.getStringingsByUser.replace(this.userIdRegex, userId));
   }
 
   postStringingRequest(body: CreateStringRequest): void {

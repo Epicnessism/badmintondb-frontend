@@ -1,8 +1,7 @@
 import {UUID} from "node:crypto";
-import {User} from "./User";
 
 export interface Racket {
-  id: UUID,
+  racketId: UUID,
   make: string,
   model: string
 }

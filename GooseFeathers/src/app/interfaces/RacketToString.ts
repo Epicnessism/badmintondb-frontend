@@ -8,5 +8,5 @@ export interface RacketToString {
 }
 
 export interface OwnerDetails {
-  userId?: UUID
+  userId?: string
 }
